@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bootstrap demo</title>
+	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+		integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+		integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+		crossorigin="anonymous"></script>
+		<style>
+		p{
+			color: red;
+		}
+			
+		</style>
+			
+</head>
+
+<body>
+	<nav style="height: 20%;">
+	<div class="d-flex align-item-center justify-content-center bg-secondary ">
+		<div>
+			<!--nav bar-->
+			<ul class="nav nav-underline">
+				<ul class="nav nav-underline">
+					<li class="nav-item">
+						<a class="nav-link " href="/" style="color:white;margin-right: 200px;">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link " href="/register" style="color:white;margin-right: 200px;">Add</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/all" style="color:white;margin-right: 200px;">GetUsers</a>
+					</li>
+	
+					<li class="nav-item">
+						<a class="nav-link" href="#" style="color:white;margin-right: 200px;">ContactUs</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link disabled" aria-disabled="true"
+							style="color:white;margin-right: 200px;">Disabled</a>
+					</li>
+				</ul>
+		</div>
+	</div> 
+</nav>	 <!-- nav bar end-->
+
+
+	<div style=" height:50px;display: flex;justify-content: center;align-items: center;margin-top: 10px;">
+	<div  style="width: 800px;display: flex;justify-content: center;align-items: center;" th:if="${msg!=null}" >
+		
+<!--      <h2 class="bi bi-check-circle-fill"> </h2> &nbsp;  	 &nbsp;   <span class="bi bi-check-circle-fill text-center text-success mt-4 alert alert-success"   role="alert" >  hii this </span>-->
+
+<h3 class="bi bi-check-circle bg-success text-center" style="width: 800px;height:40px;border-radius: 10px;"> <span style="color: white;" th:text="${msg}"></span></h3>
+	</div>
+	</div>	
+
+
+	<div th:switch="${button}">
+
+		<div th:case="Submit" class="d-flex align-items-center justify-content-center "
+			style="margin:10px auto;padding: 20px;" >
+			<div class="w-50 " style="height: 520px; padding: 20px;margin-top: 10px;"   >
+				<h3 class="text-primary">User Registration </h3>
+
+				<form th:action="@{/register}" method="post" th:Object="${user}">
+					<div style="display: grid;grid-template-columns: auto auto;grid-column-gap:20px ; grid-row-gap: 20px;padding: 5px;">
+
+					
+
+					<div class="form-floating ">
+						<input type="text" class="form-control" id="floatingInput" th:field="*{name}"
+							placeholder="enter full name">
+						<label for="floatingInput">Full Name</label>
+						
+                       <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" ></p>
+
+					</div>
+					<div class="form-floating">
+						<input type="email" class="form-control" id="floatingPassword" th:field="*{mail}"
+							placeholder="enter mail id">
+						<label for="floatingPassword">Mail Id</label>
+                       <p th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}"></p>
+					</div>
+
+					<div class="form-floating">
+						<input type="date" class="form-control" id="floatingInput" th:field="*{dob}"
+							placeholder="enter dob">
+						<label for="floatingInput ">DOB</label>
+						      <p th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></p>
+
+					</div>
+												
+
+					<div class="form-floating">
+						<div style="border: 1px solid gainsboro;height: 60px;border-radius: 5px; padding: 20px;">
+						Gender &nbsp; &nbsp;
+						<input type="radio" class="form-check-input" th:field="*{gender}" value="Male" checked="checked"> Male
+						&nbsp;
+					
+						&nbsp; <input type="radio" class="form-check-input" th:field="*{gender}" value="FeMale"> FeMale
+
+						</div>
+												                       <p th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></p>
+
+					</div>
+
+					<div class="form-floating ">
+						<input type="text" class="form-control" id="floatingInput" th:field="*{mobile}"
+							placeholder="enter mobile number">
+						<label for="floatingInput">Mobile</label>
+						    <p th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}"></p>
+
+					</div>
+					<div class="form-floating">
+						<input type="text" class="form-control" id="floatingPassword" th:field="*{ssn}"
+							placeholder="enter SSN">
+						<label for="floatingPassword">SSN</label>
+	<p th:if="${#fields.hasErrors('ssn')}" th:errors="*{ssn}"></p>
+
+					</div>
+
+
+
+					
+                 </div>
+                   <div class="form-floating mt-3 " style="padding-left: 10px;">
+						<input type="submit" value="Register" class="btn btn-primary "> &nbsp; &nbsp; &nbsp;
+						<input type="reset" value="Reset" class="btn btn-danger ">
+
+					</div>
+				</form>
+
+			</div>
+		</div>
+	
+
+		<!-- For Update-->
+		<div th:case="Update" class="d-flex align-items-center justify-content-center "
+			style="margin:10px auto;padding: 20px;" >
+			<div class="w-50 " style="height: 520px; padding: 20px;margin-top: 10px;"   >
+				<h3 class="text-primary">User Updation </h3>
+
+				<form th:action="@{/register}" method="post" th:Object="${user}">
+					<div style="display: grid;grid-template-columns: auto auto;grid-column-gap:20px ; grid-row-gap: 20px;padding: 5px;">
+
+					<div class="form-floating  ">
+						<input type="text" class="form-control" id="floatingInput" th:field="*{id}"
+							placeholder="enter full name" readonly>
+						<label for="floatingInput">User Id</label>
+					</div>
+
+					<div class="form-floating ">
+						<input type="text" class="form-control" id="floatingInput" th:field="*{name}"
+							placeholder="enter full name">
+						<label for="floatingInput">Full Name</label>
+					</div>
+					<div class="form-floating">
+						<input type="email" class="form-control" id="floatingPassword" th:field="*{mail}"
+							placeholder="enter mail id">
+						<label for="floatingPassword">Mail Id</label>
+					</div>
+
+					<div class="form-floating">
+						<input type="date" class="form-control" id="floatingInput" th:field="*{dob}"
+							placeholder="enter dob">
+						<label for="floatingInput ">DOB</label>
+					</div>
+					<div class="form-floating">
+						<div style="border: 1px solid gainsboro;height: 60px;border-radius: 5px; padding: 20px;">
+						Gender &nbsp; &nbsp;
+						<input type="radio" class="form-check-input" th:field="*{gender}" value="Male" checked> Male
+						&nbsp;
+					
+						&nbsp; <input type="radio" class="form-check-input" th:field="*{gender}" value="FeMale"> FeMale
+						</div>
+					</div>
+
+					<div class="form-floating ">
+						<input type="text" class="form-control" id="floatingInput" th:field="*{mobile}"
+							placeholder="enter mobile number">
+						<label for="floatingInput">Mobile</label>
+					</div>
+					<div class="form-floating">
+						<input type="text" class="form-control" id="floatingPassword" th:field="*{ssn}"
+							placeholder="enter SSN">
+						<label for="floatingPassword">SSN</label>
+					</div>
+
+
+					<input type="hidden" th:field="*{createTime}">
+
+
+					<input type="hidden" th:field="*{updateTime}">
+
+
+					<input type="hidden" th:field="*{status}">
+
+					
+                 </div>
+                   <div class="form-floating mt-3 " style="padding-left: 10px;">
+						<input type="submit" value="Update" class="btn btn-primary "> &nbsp; &nbsp; &nbsp;
+						<input type="reset" value="Reset" class="btn btn-danger ">
+
+					</div>
+
+				</form>
+
+			</div>
+		</div>
+	</div>
+	
+	<footer class="bg-secondary ">
+	<div style="height: 50px;">
+		
+	</div>
+	
+</footer>
+</body>
+
+</html>

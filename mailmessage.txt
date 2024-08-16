@@ -1,0 +1,4 @@
+hi <b><h4 style=color:red>{name}<h4></b>,<br> 
+  Your Account has been {status} successfully  with <b>{id}<b>,<br>
+  Thank you,<br>
+  From AshokIt.
